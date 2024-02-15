@@ -1,0 +1,59 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="WebAppl_23_MasterPage.Default" %>
+<%@ Register Src="~/Header.ascx" TagName="header" TagPrefix="h1" %>
+<%@ Register Src="~/Footer.ascx" TagName="footer" TagPrefix="f1" %>
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <script src="jquery.js"></script>
+    <link href="menu.css" rel="stylesheet" />
+    <script src="menu.js"></script>
+
+
+
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <h1:header runat="server" id="head1"></h1:header>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <div id="menu">
+		<ul class="menu">
+			<li><a href="RegistrationForm.aspx" class="parent"><span>Registration Form</span></a></li>
+			<li><a href="StudentForm.aspx"><span>Student Form</span></a></li>
+			<li><a href="#"><span>Help</span></a></li>
+			<li class="last"><a href="#"><span>Contacts</span></a></li>
+		</ul>
+	</div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+						<center>
+							<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+							</asp:ContentPlaceHolder>
+						</center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         <f1:footer runat="server" id="footer1"></f1:footer>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
