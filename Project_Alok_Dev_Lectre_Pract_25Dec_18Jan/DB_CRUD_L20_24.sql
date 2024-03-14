@@ -29,9 +29,16 @@ begin
 	end
 	else if(@action='Get')
 	begin
-	select tblEmployee.empid,tblEmployee.name,tblEmployee.age,tblEmployee.gender,tblEmployee.country,tblEmployee.state,tblcountry.cname ,tblstate.sname  from tblEmployee
+	--select  tblEmployee.empid,tblEmployee.name,tblEmployee.age,tblEmployee.gender,tblEmployee.country,tblEmployee.state,tblcountry.cname ,tblstate.sname  from tblEmployee
+	--left join tblcountry on tblemployee.country= tblcountry.cid
+	--left join tblstate on tblemployee.state= tblstate.sid
+
+	select ('000'+ CONVERT(varchar(100),tblemployee.empid)) as empid,
+	(UPPER(LEFT(name,1))+SUBSTRING(name,2,100)) as CapitalName,tblEmployee.age,tblEmployee.gender,tblEmployee.country,tblEmployee.state,tblcountry.cname ,tblstate.sname, ROW_NUMBER()Over(order by empid) as SerialNumber  from tblEmployee
 	left join tblcountry on tblemployee.country= tblcountry.cid
 	left join tblstate on tblemployee.state= tblstate.sid
+	order by name asc
+	
 	end
 	else if(@action='Delete')
 	begin
@@ -98,3 +105,12 @@ end
 
 --sexec sp_tblstate_get(@countryid,1)
 --select * from  tblstate where cid=1
+
+select ('Emp'+CONVERT(varchar(50),empid)) as empid,name,age,gender from tblEmployee
+
+select ('00'+CONVERT(varchar(50),empid)) as empid,name,age,gender from tblEmployee
+
+select empid,name,age,gender,ROW_NUMBER()Over(order by empid) as SerialNumber
+from tblEmployee
+
+select (UPPER(LEFT(name,1))+SUBSTRING(name,2,100)) as CapitalName from tblEmployee
